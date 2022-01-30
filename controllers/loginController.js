@@ -33,7 +33,7 @@ async function loginController(req, res, next) {
       payload: user,
     });
   } catch (error) {
-    console.log(error);
+    //Log error
     next(new ErrorHandler(500, "Internal Server Error 2"));
   }
 }

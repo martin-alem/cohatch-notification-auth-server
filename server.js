@@ -5,6 +5,7 @@ import cors from "cors";
 import "./database/connection.js";
 
 import loginRouter from "./routes/loginRouter.js";
+import logoutRouter from "./routes/logoutRouter.js";
 
 //Read environment variable from .env
 dotenv.config();
@@ -29,6 +30,7 @@ app.use(express.json());
 app.use("/api/v1/login", loginRouter);
 
 //Logout endpoint
+app.use("/api/v1/logout", logoutRouter);
 
 //Ping routes to check server status
 app.get("/api/ping", (req, res) => {
