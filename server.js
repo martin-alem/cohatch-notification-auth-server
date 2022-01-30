@@ -6,6 +6,7 @@ import "./database/connection.js";
 
 import loginRouter from "./routes/loginRouter.js";
 import logoutRouter from "./routes/logoutRouter.js";
+import authorizeRouter from "./routes/authorizeRouter.js";
 
 //Read environment variable from .env
 dotenv.config();
@@ -14,10 +15,10 @@ const app = express();
 
 //Express Cors Configuration
 const corsOptions = {
-  origin: process.env.DOMAIN,
+  origin: process.env.ALLOWED_DOMAIN,
   credentials: true,
   methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization", , "Access-Control-Allow-Origin"],
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
@@ -31,6 +32,9 @@ app.use("/api/v1/login", loginRouter);
 
 //Logout endpoint
 app.use("/api/v1/logout", logoutRouter);
+
+//Authorization endpoint
+app.use("/api/v1/authorize", authorizeRouter);
 
 //Ping routes to check server status
 app.get("/api/ping", (req, res) => {
