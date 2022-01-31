@@ -18,7 +18,7 @@ async function loginController(req, res, next) {
      * If an email exist login user otherwise create a new record
      */
     const { email: googleEmail } = googleUser;
-    const user = await UserModel.findOne({ email: googleEmail });
+    let user = await UserModel.findOne({ email: googleEmail });
 
     if (!user) {
       user = await UserModel.create([googleUser]);
@@ -33,7 +33,7 @@ async function loginController(req, res, next) {
       payload: user,
     });
   } catch (error) {
-    //Log error
+    console.error(error);
     next(new ErrorHandler(500, "Internal Server Error 2"));
   }
 }
