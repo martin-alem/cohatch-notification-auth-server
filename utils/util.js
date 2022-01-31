@@ -3,6 +3,7 @@ export function setCookie(res, key, value, expiration) {
     expires: new Date(Date.now() + expiration * 3600000),
     httpOnly: true,
     // domain: process.env.COOKIE_DOMAIN,
-    sameSite: "lax",
+    sameSite: "None",
+    secure: true,
   });
 }
